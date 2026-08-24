@@ -1,0 +1,44 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { site } from "../config/site";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  meta?: string;
+}
+
+const { title, description, eyebrow, meta } = Astro.props;
+---
+
+<BaseLayout title={`${title} · ${site.title}`} description={description}>
+  <div class="page-shell article-shell">
+    <header class="site-header article-header">
+      <a class="brand" href="/" aria-label="返回首页">
+        <span class="brand-mark">慕</span>
+        <span>{site.title}</span>
+      </a>
+      <a class="back-link" href="/">归首页</a>
+    </header>
+
+    <main class="article-main">
+      <header class="article-title">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        {meta && <small>{meta}</small>}
+      </header>
+
+      <article class="prose">
+        <slot />
+      </article>
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} {site.owner}</p>
+      <a href={site.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+    </footer>
+  </div>
+</BaseLayout>
+

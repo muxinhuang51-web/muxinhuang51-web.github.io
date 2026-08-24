@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const notes = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
+  .slice(0, 5);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+  }).format(date);
+---
+
+<BaseLayout>
+  <div class="page-shell" id="top">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark">慕</span>
+        <span>{site.title}</span>
+      </a>
+
+      <nav aria-label="主导航">
+        {site.navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">PERSONAL ARCHIVE · 个人卷册</p>
+          <h1 id="hero-title">
+            <span>{site.owner}</span>
+            <em>{site.motto}</em>
+          </h1>
+          <p class="role">{site.role}</p>
+          <p class="introduction">{site.introduction}</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">阅览方向</a>
+            <a class="button text" href={site.github} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="landscape" aria-hidden="true">
+          <span class="sun"></span>
+          <span class="mountain mountain-back"></span>
+          <span class="mountain mountain-front"></span>
+          <span class="water-line line-one"></span>
+          <span class="water-line line-two"></span>
+          <span class="seal">行<br />远</span>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p>卷一</p>
+          <h2 id="projects-title">所求之道</h2>
+          <span>FOCUS</span>
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project, index) => (
+            <a class="project-card" href={`/projects/${project.id}/`}>
+              <span class="project-number">{String(index + 1).padStart(2, "0")}</span>
+              <h3>《{project.data.title}》</h3>
+              <p>{project.data.description}</p>
+              <small>{project.data.stack.join(" · ")}</small>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="section notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="section-heading">
+          <p>卷二</p>
+          <h2 id="notes-title">近来札记</h2>
+          <span>NOTES</span>
+        </div>
+
+        <ol class="note-list">
+          {notes.map((note) => (
+            <li>
+              <time datetime={note.data.published.toISOString()}>
+                {formatDate(note.data.published)}
+              </time>
+              <a href={`/notes/${note.id}/`}>{note.data.title}</a>
+              <span aria-hidden="true">↗</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <p class="vertical-note">关于此间</p>
+        <div>
+          <span class="section-kicker">ABOUT</span>
+          <h2 id="about-title">从软件工程出发，走向 AI 的深处。</h2>
+          <p>
+            我是黄慕鑫，西安交通大学 2025 级软件工程学生。关注预训练与后训练、
+            量化交易及 AI Infra，也愿意理解连接这些方向的数学、系统与工程方法。
+          </p>
+          <a href={site.github} target="_blank" rel="noreferrer">往 GitHub 一叙 →</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} {site.owner}</p>
+      <p>以 Astro 构筑 · 托于 GitHub Pages</p>
+    </footer>
+  </div>
+</BaseLayout>

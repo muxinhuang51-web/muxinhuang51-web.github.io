@@ -1,0 +1,33 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = new Intl.DateTimeFormat("zh-CN", { dateStyle: "long" }).format(
+  post.data.published,
+);
+const meta = [date, ...post.data.tags].join(" · ");
+---
+
+<ArticleLayout
+  title={post.data.title}
+  description={post.data.description}
+  eyebrow="NOTE · 札记"
+  meta={meta}
+>
+  <Content />
+</ArticleLayout>
+

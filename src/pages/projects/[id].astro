@@ -1,0 +1,31 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const meta = [project.data.status, ...project.data.stack].join(" · ");
+---
+
+<ArticleLayout
+  title={`《${project.data.title}》`}
+  description={project.data.description}
+  eyebrow="FOCUS · 所求之道"
+  meta={meta}
+>
+  <Content />
+</ArticleLayout>
+

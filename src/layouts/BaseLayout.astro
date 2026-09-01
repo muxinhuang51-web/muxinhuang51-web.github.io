@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+import { site } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-frame">
+      <header class="site-header">
+        <a class="site-title" href="/">{site.title}</a>
+        <nav aria-label="主导航">
+          <a href="/">文章</a>
+          <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+      </header>
+      <slot />
+      <footer class="site-footer">
+        <span>© {new Date().getFullYear()} {site.owner}</span>
+        <span>用 Astro 构建</span>
+      </footer>
+    </div>
+  </body>
+</html>

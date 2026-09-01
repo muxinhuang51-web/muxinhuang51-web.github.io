@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+
+const posts = (await getCollection("posts"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+---
+
+<BaseLayout>
+  <main class="home-main">
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="intro-label">PERSONAL BLOG</p>
+      <h1 id="intro-title">{site.owner}的博客</h1>
+      <p>{site.description}</p>
+    </section>
+
+    <section class="post-section" aria-labelledby="posts-title">
+      <div class="section-heading">
+        <h2 id="posts-title">文章</h2>
+        <span>{posts.length} 篇</span>
+      </div>
+
+      {posts.length > 0 ? (
+        <ol class="post-list">
+          {posts.map((post) => (
+            <li>
+              <time datetime={post.data.published.toISOString()}>{formatDate(post.data.published)}</time>
+              <div>
+                <h3><a href={`/notes/${post.id}/`}>{post.data.title}</a></h3>
+                {post.data.description && <p>{post.data.description}</p>}
+                {post.data.tags.length > 0 && (
+                  <ul class="tag-list" aria-label="文章标签">
+                    {post.data.tags.map((tag) => <li>{tag}</li>)}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">还没有文章。在 <code>src/content/posts/</code> 新建一个 Markdown 文件吧。</p>
+      )}
+    </section>
+  </main>
+</BaseLayout>

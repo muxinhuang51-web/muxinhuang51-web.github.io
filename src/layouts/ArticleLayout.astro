@@ -1,0 +1,26 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { site } from "../config/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  meta?: string;
+}
+
+const { title, description = "", meta = "" } = Astro.props;
+---
+
+<BaseLayout title={`${title} - ${site.title}`} description={description || site.description}>
+  <main class="article-main">
+    <a class="back-link" href="/">← 返回文章列表</a>
+    <header class="article-title">
+      <h1>{title}</h1>
+      {description && <p>{description}</p>}
+      {meta && <small>{meta}</small>}
+    </header>
+    <article class="prose">
+      <slot />
+    </article>
+  </main>
+</BaseLayout>

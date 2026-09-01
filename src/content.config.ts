@@ -14,6 +14,18 @@ const posts = defineCollection({
   }),
 });
 
+const updates = defineCollection({
+  loader: glob({ base: "./src/content/updates", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    description: z.string().default(""),
+    type: z.string().default("动态"),
+    link: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Keep the collection boundary ready for a future projects section.
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
@@ -27,4 +39,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { posts, projects };
+export const collections = { posts, updates, projects };

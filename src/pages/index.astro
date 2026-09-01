@@ -7,6 +7,10 @@ const posts = (await getCollection("posts"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
+const updates = (await getCollection("updates"))
+  .filter((update) => !update.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("zh-CN", {
     year: "numeric",
@@ -48,6 +52,32 @@ const formatDate = (date: Date) =>
         </ol>
       ) : (
         <p class="empty-state">还没有文章。在 <code>src/content/posts/</code> 新建一个 Markdown 文件吧。</p>
+      )}
+    </section>
+
+    <section class="updates-section" id="updates" aria-labelledby="updates-title">
+      <div class="section-heading">
+        <h2 id="updates-title">我的动态轨迹</h2>
+        <span>{updates.length} 条</span>
+      </div>
+
+      {updates.length > 0 ? (
+        <ol class="timeline">
+          {updates.map((update) => (
+            <li>
+              <time datetime={update.data.date.toISOString()}>{formatDate(update.data.date)}</time>
+              <div class="timeline-content">
+                <span class="timeline-type">{update.data.type}</span>
+                <h3>
+                  {update.data.link ? <a href={update.data.link}>{update.data.title}</a> : update.data.title}
+                </h3>
+                {update.data.description && <p>{update.data.description}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">还没有动态。在 <code>src/content/updates/</code> 新建一个 Markdown 文件吧。</p>
       )}
     </section>
   </main>

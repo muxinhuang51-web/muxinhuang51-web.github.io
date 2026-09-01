@@ -16,18 +16,10 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const date = new Intl.DateTimeFormat("zh-CN", { dateStyle: "long" }).format(
-  post.data.published,
-);
+const date = new Intl.DateTimeFormat("zh-CN", { dateStyle: "long" }).format(post.data.published);
 const meta = [date, ...post.data.tags].join(" · ");
 ---
 
-<ArticleLayout
-  title={post.data.title}
-  description={post.data.description}
-  eyebrow="NOTE · 札记"
-  meta={meta}
->
+<ArticleLayout title={post.data.title} description={post.data.description} meta={meta}>
   <Content />
 </ArticleLayout>
-

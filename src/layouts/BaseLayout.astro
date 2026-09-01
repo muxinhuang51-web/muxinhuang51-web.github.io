@@ -7,10 +7,7 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = site.title,
-  description = site.introduction,
-} = Astro.props;
+const { title = site.title, description = site.description } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,7 +21,19 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <div class="site-frame">
+      <header class="site-header">
+        <a class="site-title" href="/">{site.title}</a>
+        <nav aria-label="主导航">
+          <a href="/">文章</a>
+          <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+      </header>
+      <slot />
+      <footer class="site-footer">
+        <span>© {new Date().getFullYear()} {site.owner}</span>
+        <span>用 Astro 构建</span>
+      </footer>
+    </div>
   </body>
 </html>
-

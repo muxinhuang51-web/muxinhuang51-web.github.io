@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="简历 - 山止川行" description="黄慕鑫的个人简历。">
+  <main class="resume-main">
+    <header class="resume-heading">
+      <div>
+        <p class="intro-label">RESUME</p>
+        <h1>个人简历</h1>
+      </div>
+      <a class="download-link" href="/resume/resume.pdf" download>下载 PDF</a>
+    </header>
+
+    <iframe
+      class="resume-viewer"
+      src="/resume/resume.pdf"
+      title="黄慕鑫的个人简历"
+    ></iframe>
+  </main>
+</BaseLayout>

@@ -36,6 +36,9 @@ draft: false
 - `src/content.config.ts`：文章字段定义，后续可扩展标签、系列等字段
 - `src/pages/index.astro`：文章列表页
 - `src/pages/notes/[id].astro`：文章详情页
+- `src/pages/resume/index.astro`：简历页面
 - `src/config/site.ts`：站点标题、作者和 GitHub 地址
+
+简历 PDF 放在 `public/resume/resume.pdf`，访问 `/resume/` 可在线预览或下载。
 
 项目内容集合已保留在配置中，等博客基础稳定后可以再增加项目、关于等页面。

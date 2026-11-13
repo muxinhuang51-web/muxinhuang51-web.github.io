@@ -23,10 +23,12 @@ a:hover, a:focus-visible { color: var(--accent); }
 nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
 
 .home-main { padding: 80px 0 120px; }
-.intro { padding-bottom: 72px; border-bottom: 1px solid var(--line); }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) 144px; align-items: center; gap: 40px; padding-bottom: 72px; border-bottom: 1px solid var(--line); }
+.intro-copy { min-width: 0; }
 .intro-label { margin: 0 0 18px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.16em; }
-.intro h1 { margin: 0 0 16px; font-size: clamp(36px, 7vw, 58px); line-height: 1.2; letter-spacing: 0.02em; }
-.intro > p:last-child { max-width: 520px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
+.intro h1 { margin: 0 0 16px; font-size: clamp(28px, 3.6vw, 36px); line-height: 1.35; letter-spacing: 0.01em; }
+.intro-description { max-width: 520px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
+.intro-portrait { display: block; width: 100%; height: auto; border-radius: 8px; }
 
 .post-section { padding-top: 64px; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px; }
@@ -80,7 +82,9 @@ code { padding: 2px 5px; background: #f5f5f4; font-family: ui-monospace, SFMono-
 @media (max-width: 640px) {
   .site-frame { width: min(calc(100% - 30px), 820px); }
   .home-main { padding: 56px 0 88px; }
-  .intro { padding-bottom: 56px; }
+  .intro { grid-template-columns: minmax(0, 1fr) 96px; gap: 20px; padding-bottom: 56px; }
+  .intro h1 { font-size: 28px; }
+  .intro-description { font-size: 15px; }
   .post-section { padding-top: 48px; }
   .post-list > li { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
   .updates-section { padding-top: 56px; }

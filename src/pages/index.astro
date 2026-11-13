@@ -23,9 +23,18 @@ const formatDate = (date: Date, precision: "day" | "month" = "day") =>
 <BaseLayout>
   <main class="home-main">
     <section class="intro" aria-labelledby="intro-title">
-      <p class="intro-label">PERSONAL BLOG</p>
-      <h1 id="intro-title">{site.owner}的博客</h1>
-      <p>{site.description}</p>
+      <div class="intro-copy">
+        <p class="intro-label">PERSONAL BLOG</p>
+        <h1 id="intro-title">{site.owner}的博客</h1>
+        <p class="intro-description">{site.description}</p>
+      </div>
+      <img
+        class="intro-portrait"
+        src="/asset/portrait.jpg"
+        alt={`${site.owner}的照片`}
+        width="295"
+        height="413"
+      />
     </section>
 
     <section class="post-section" aria-labelledby="posts-title">

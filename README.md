@@ -54,6 +54,8 @@ link: /notes/my-post/
 
 `link` 是可选的，可以链接到文章、简历或其他页面。动态也支持 `draft: true` 暂时隐藏。
 
+只确定到月份的经历可以设置 `datePrecision: month`，并将 `date` 写为该月第一天（例如 `2025-11-01`）用于排序；页面只显示年月。
+
 ### 修改站点名称、作者和 GitHub
 
 编辑 `src/config/site.ts`：

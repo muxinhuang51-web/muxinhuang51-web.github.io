@@ -19,6 +19,7 @@ const updates = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    datePrecision: z.enum(["day", "month"]).default("day"),
     description: z.string().default(""),
     type: z.string().default("动态"),
     link: z.string().optional(),

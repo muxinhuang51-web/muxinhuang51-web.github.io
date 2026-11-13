@@ -11,11 +11,12 @@ const updates = (await getCollection("updates"))
   .filter((update) => !update.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const formatDate = (date: Date) =>
+const formatDate = (date: Date, precision: "day" | "month" = "day") =>
   new Intl.DateTimeFormat("zh-CN", {
     year: "numeric",
     month: "2-digit",
-    day: "2-digit",
+    day: precision === "month" ? undefined : "2-digit",
+    timeZone: "UTC",
   }).format(date);
 ---
 
@@ -65,7 +66,9 @@ const formatDate = (date: Date) =>
         <ol class="timeline">
           {updates.map((update) => (
             <li>
-              <time datetime={update.data.date.toISOString()}>{formatDate(update.data.date)}</time>
+              <time datetime={update.data.date.toISOString().slice(0, update.data.datePrecision === "month" ? 7 : 10)}>
+                {formatDate(update.data.date, update.data.datePrecision)}
+              </time>
               <div class="timeline-content">
                 <span class="timeline-type">{update.data.type}</span>
                 <h3>

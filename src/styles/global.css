@@ -29,6 +29,7 @@ nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
 .intro h1 { margin: 0 0 16px; font-size: clamp(28px, 3.6vw, 36px); line-height: 1.35; letter-spacing: 0.01em; }
 .intro-description { max-width: 520px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
 .intro-portrait { display: block; width: 100%; height: auto; border-radius: 8px; }
+.home-statement { margin: 40px 0 0; padding-left: 20px; border-left: 2px solid var(--accent); font-size: 16px; line-height: 2; }
 
 .research-section { padding-top: 64px; }
 .research-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 0; list-style: none; }
@@ -95,6 +96,7 @@ code { padding: 2px 5px; background: #f5f5f4; font-family: ui-monospace, SFMono-
   .intro { grid-template-columns: minmax(0, 1fr) 96px; gap: 20px; padding-bottom: 56px; }
   .intro h1 { font-size: 28px; }
   .intro-description { font-size: 15px; }
+  .home-statement { margin-top: 32px; padding-left: 16px; font-size: 15px; }
   .research-section { padding-top: 48px; }
   .research-list { grid-template-columns: 1fr; gap: 24px; }
   .research-list > li { padding-top: 20px; }

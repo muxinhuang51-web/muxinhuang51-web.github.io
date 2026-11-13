@@ -30,6 +30,14 @@ nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
 .intro-description { max-width: 520px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
 .intro-portrait { display: block; width: 100%; height: auto; border-radius: 8px; }
 
+.research-section { padding-top: 64px; }
+.research-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 0; list-style: none; }
+.research-list > li { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.research-list h3 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1.5; }
+.research-list p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.research-keywords { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 18px 0 0; padding: 0; color: var(--accent); font-size: 12px; line-height: 1.7; list-style: none; }
+section[id] { scroll-margin-top: 28px; }
+
 .post-section { padding-top: 64px; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px; }
 .section-heading h2 { margin: 0; font-size: 24px; letter-spacing: 0.04em; }
@@ -81,10 +89,15 @@ code { padding: 2px 5px; background: #f5f5f4; font-family: ui-monospace, SFMono-
 
 @media (max-width: 640px) {
   .site-frame { width: min(calc(100% - 30px), 820px); }
+  .site-header { align-items: flex-start; flex-direction: column; gap: 18px; padding: 22px 0; }
+  nav { flex-wrap: wrap; gap: 12px 18px; }
   .home-main { padding: 56px 0 88px; }
   .intro { grid-template-columns: minmax(0, 1fr) 96px; gap: 20px; padding-bottom: 56px; }
   .intro h1 { font-size: 28px; }
   .intro-description { font-size: 15px; }
+  .research-section { padding-top: 48px; }
+  .research-list { grid-template-columns: 1fr; gap: 24px; }
+  .research-list > li { padding-top: 20px; }
   .post-section { padding-top: 48px; }
   .post-list > li { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
   .updates-section { padding-top: 56px; }

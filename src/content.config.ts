@@ -27,6 +27,16 @@ const updates = defineCollection({
   }),
 });
 
+const research = defineCollection({
+  loader: glob({ base: "./src/content/research", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    topics: z.array(z.string()).default([]),
+    order: z.number().int().default(0),
+  }),
+});
+
 // Keep the collection boundary ready for a future projects section.
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
@@ -40,4 +50,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { posts, updates, projects };
+export const collections = { posts, updates, research, projects };

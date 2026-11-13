@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const resumeUrl = "/resume/muxin_cv.pdf";
 ---
 
 <BaseLayout title="简历 - 山止川行" description="黄慕鑫的个人简历。">
@@ -9,12 +11,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <p class="intro-label">RESUME</p>
         <h1>个人简历</h1>
       </div>
-      <a class="download-link" href="/resume/resume.pdf" download>下载 PDF</a>
+      <a class="download-link" href={resumeUrl} download>下载 PDF</a>
     </header>
 
     <iframe
       class="resume-viewer"
-      src="/resume/resume.pdf"
+      src={resumeUrl}
       title="黄慕鑫的个人简历"
     ></iframe>
   </main>

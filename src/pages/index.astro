@@ -3,6 +3,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../config/site";
 
+const researchInterests = (await getCollection("research"))
+  .sort((a, b) => a.data.order - b.data.order);
+
 const posts = (await getCollection("posts"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
@@ -37,7 +40,30 @@ const formatDate = (date: Date, precision: "day" | "month" = "day") =>
       />
     </section>
 
-    <section class="post-section" aria-labelledby="posts-title">
+    {researchInterests.length > 0 && (
+      <section class="research-section" id="research" aria-labelledby="research-title">
+        <div class="section-heading">
+          <h2 id="research-title">研究兴趣</h2>
+          <span lang="en">Research Interests</span>
+        </div>
+
+        <ul class="research-list">
+          {researchInterests.map((interest) => (
+            <li>
+              <h3>{interest.data.title}</h3>
+              <p>{interest.data.description}</p>
+              {interest.data.topics.length > 0 && (
+                <ul class="research-keywords" aria-label={`${interest.data.title}的研究主题`}>
+                  {interest.data.topics.map((keyword) => <li>{keyword}</li>)}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="post-section" id="posts" aria-labelledby="posts-title">
       <div class="section-heading">
         <h2 id="posts-title">文章</h2>
         <span>{posts.length} 篇</span>

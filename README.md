@@ -1,6 +1,6 @@
 # 山止川行
 
-这是一个基于 Astro 的个人博客。文章、动态和简历分别管理，先保持简单，后续可以继续增加项目、标签或其他页面。
+这是一个基于 Astro 的个人博客。研究兴趣、文章、动态和简历分别管理，先保持简单，后续可以继续增加项目、标签或其他页面。
 
 ## 本地运行
 
@@ -67,7 +67,11 @@ link: /notes/my-post/
 
 ### 修改首页结构
 
-编辑 `src/pages/index.astro`。文章列表和动态时间线都在这里渲染。
+编辑 `src/pages/index.astro`。首页依次展示个人简介、研究兴趣、文章列表和动态时间线。导航中的研究兴趣、文章和动态分别跳转到 `/#research`、`/#posts` 和 `/#updates`。
+
+### 修改研究兴趣
+
+编辑 `src/content/research/` 中的 Markdown 文件。首页读取 `title`（方向名称）、`description`（简短介绍）和 `topics`（研究主题），并按 `order` 从小到大排列。新增同样格式的文件即可添加研究方向。
 
 ### 修改文章详情页
 
@@ -75,7 +79,7 @@ link: /notes/my-post/
 
 ### 修改简历
 
-将新的 PDF 覆盖到 `public/resume/resume.pdf`。简历页面代码在 `src/pages/resume/index.astro`，访问地址是 `/resume/`。
+将新的 PDF 覆盖到 `public/resume/muxin_cv.pdf`。简历页面代码在 `src/pages/resume/index.astro`，访问地址是 `/resume/`。如需修改 PDF 文件名，请同时更新该页面中的 `resumeUrl`。
 
 ### 修改样式
 
@@ -89,6 +93,7 @@ link: /notes/my-post/
 
 - `src/content/posts/`：博客文章
 - `src/content/updates/`：动态轨迹
+- `src/content/research/`：首页研究兴趣
 - `src/content/projects/`：预留的项目内容，暂未展示
 - `src/content.config.ts`：所有 Markdown 字段定义
 - `src/pages/index.astro`：首页

@@ -65,9 +65,11 @@ link: /notes/my-post/
 - `description`：首页简介和默认 SEO 描述
 - `github`：导航栏里的 GitHub 地址
 
+同一文件中的 `contacts` 管理首页联系方式：`label` 为平台名称，`value` 为展示的账号，`href` 为可选链接。邮箱使用 `mailto:` 链接。
+
 ### 修改首页结构
 
-编辑 `src/pages/index.astro`。首页依次展示个人简介、研究兴趣、文章列表和动态时间线。导航中的研究兴趣、文章和动态分别跳转到 `/#research`、`/#posts` 和 `/#updates`。
+编辑 `src/pages/index.astro`。首页依次展示个人简介、研究兴趣、文章列表、动态时间线和联系方式。导航中的研究兴趣、文章、动态和联系分别跳转到 `/#research`、`/#posts`、`/#updates` 和 `/#contact`。
 
 ### 修改研究兴趣
 

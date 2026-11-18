@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../config/site";
+import { contacts, site } from "../config/site";
 
 const researchInterests = (await getCollection("research"))
   .sort((a, b) => a.data.order - b.data.order);
@@ -119,6 +119,29 @@ const formatDate = (date: Date, precision: "day" | "month" = "day") =>
       ) : (
         <p class="empty-state">还没有动态。在 <code>src/content/updates/</code> 新建一个 Markdown 文件吧。</p>
       )}
+    </section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <h2 id="contact-title">联系</h2>
+        <span lang="en">Contact</span>
+      </div>
+
+      <dl class="contact-list">
+        {contacts.map((contact) => (
+          <div>
+            <dt>{contact.label}</dt>
+            <dd>
+              {contact.href ? (
+                <a
+                  href={contact.href}
+                  target={contact.href.startsWith("https://") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("https://") ? "noreferrer" : undefined}
+                >{contact.value}</a>
+              ) : contact.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   </main>
 </BaseLayout>

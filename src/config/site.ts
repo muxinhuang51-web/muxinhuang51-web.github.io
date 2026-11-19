@@ -6,6 +6,7 @@ export const site = {
 };
 
 export const contacts: { label: string; value: string; href?: string }[] = [
+  { label: "微信公众号", value: "慕鑫的随笔" },
   { label: "QQ 群", value: "1130973558" },
   { label: "小红书", value: "42282087296" },
   { label: "X", value: "@XinXiao66803", href: "https://x.com/XinXiao66803" },

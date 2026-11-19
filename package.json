@@ -10,7 +10,11 @@
     "check": "astro check"
   },
   "dependencies": {
-    "astro": "7.2.4"
+    "@astrojs/markdown-remark": "^7.2.4",
+    "astro": "7.2.4",
+    "katex": "^0.16.47",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

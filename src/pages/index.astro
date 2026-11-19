@@ -27,8 +27,8 @@ const formatDate = (date: Date, precision: "day" | "month" = "day") =>
   <main class="home-main">
     <section class="intro" aria-labelledby="intro-title">
       <div class="intro-copy">
-        <p class="intro-label">PERSONAL BLOG</p>
-        <h1 id="intro-title">{site.owner}的博客</h1>
+        <p class="intro-label">个人主页 <span lang="en">/ PERSONAL HOMEPAGE</span></p>
+        <h1 id="intro-title">{site.name} <span lang="en">{site.englishName}</span></h1>
         <p class="intro-description">{site.description}</p>
       </div>
       <img
@@ -38,9 +38,8 @@ const formatDate = (date: Date, precision: "day" | "month" = "day") =>
         width="295"
         height="413"
       />
+      <p class="home-invitation">我期待各种的企业/学术界的实习，交流机会，如果你对我的研究或想法感兴趣<a href="#contact">欢迎联系我</a></p>
     </section>
-
-    <p class="home-invitation">我期待各种的企业/学术界的实习，交流机会，如果你对我的研究或想法感兴趣<a href="#contact">欢迎联系我</a></p>
 
     <p class="home-statement">站在AGI爆发的前夜，我们需要更认真的思考下一代的社会形态：如何让生产力爆发的曲线更符合社会的变革，如何带来新的分配原则和分配方式，这是智能科学的技术问题，更是社会科学的规划问题，我们希望最终实现共产主义社会，这是我们年轻人的伟大事业</p>
 
